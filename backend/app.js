@@ -3,6 +3,7 @@ require("express-async-errors");
 
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const connectDB = require("./db/connect");
 
 const userRouter = require("./routes/user");
@@ -21,6 +22,11 @@ app.use("/api/v1", userRouter);
 app.use("/api/v1/profile", profileRouter);
 app.use("/api/v1/org", orgRouter);
 app.use("/api/v1/events", eventRouter);
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+});
 
 const port = process.env.PORT || 3000;
 

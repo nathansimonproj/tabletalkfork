@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "start": "cd backend && node app.js",
     "dev": "concurrently \"cd backend && node app.js\" \"cd frontend && npm run dev\""
   },
   "devDependencies": {
